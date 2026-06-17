@@ -1,0 +1,15 @@
+---
+- hosts: webserver
+  become: yes
+
+  tasks:
+
+    - name: Copy WAR file
+      copy:
+        src: target/*.war
+        dest: /opt/tomcat/webapps/
+
+    - name: Restart Tomcat
+      service:
+        name: tomcat
+        state: restarted
